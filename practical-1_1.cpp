@@ -1,14 +1,15 @@
 #include <iostream>
 #include <string>
+using namespace std;
 
 class BankAccount {
 private:
-    std::string accountHolderName;
-    std::string accountNumber;
+    string accountHolderName;
+    string accountNumber;
     double balance;
 
 public:
-    BankAccount(const std::string& name, const std::string& accNumber, double initialBalance = 0.0) {
+    BankAccount(string name, string accNumber, double initialBalance = 0.0) {
         accountHolderName = name;
         accountNumber = accNumber;
         balance = initialBalance;
@@ -16,41 +17,41 @@ public:
 
     void deposit(double amount) {
         if (amount <= 0) {
-            std::cout << "Error: Deposit amount must be positive." << std::endl;
+            cout << "Error: Deposit amount must be positive." << endl;
             return;
         }
 
         balance += amount;
-        std::cout << "Deposited $" << amount << " successfully." << std::endl;
+        cout << "Deposited $" << amount << " successfully." <<endl;
     }
 
     void withdraw(double amount) {
         if (amount <= 0) {
-            std::cout << "Error: Withdrawal amount must be positive." << std::endl;
+            cout << "Error: Withdrawal amount must be positive." <<endl;
             return;
         }
 
         if (amount > balance) {
-            std::cout << "Error: Insufficient funds. Current balance is $" << balance << std::endl;
+            cout << "Error: Insufficient funds. Current balance is $" << balance <<endl;
             return;
         }
 
         balance -= amount;
-        std::cout << "Withdrew $" << amount << " successfully." << std::endl;
+        cout << "Withdrew $" << amount << " successfully." <<endl;
     }
 
     void display_balance() const {
-        std::cout << "Account Information:" << std::endl;
-        std::cout << "Holder: " << accountHolderName << std::endl;
-        std::cout << "Account Number: " << accountNumber << std::endl;
-        std::cout << "Current Balance: $" << balance << std::endl;
+        cout << "Account Information:" << endl;
+        cout << "Holder: " << accountHolderName <<endl;
+        cout << "Account Number: " << accountNumber <<endl;
+        cout << "Current Balance: $" << balance <<endl;
     }
 
-    std::string get_account_holder() const {
+    string get_account_holder() const {
         return accountHolderName;
     }
 
-    std::string get_account_number() const {
+    string get_account_number() const {
         return accountNumber;
     }
 
@@ -64,34 +65,34 @@ int main() {
     BankAccount account2("Jane Smith", "B67890", 500.0);
     BankAccount account3("Alice Johnson", "C13579");
 
-    std::cout << "Initial Account States:" << std::endl;
-    std::cout << "-------------------------" << std::endl;
+    cout << "Initial Account States:" <<endl;
+    cout << "-------------------------" <<endl;
     account1.display_balance();
-    std::cout << "-------------------------" << std::endl;
+    cout << "-------------------------" <<endl;
     account2.display_balance();
-    std::cout << "-------------------------" << std::endl;
+    cout << "-------------------------" <<endl;
     account3.display_balance();
-    std::cout << "-------------------------\n" << std::endl;
+    cout << "-------------------------\n" <<endl;
 
-    std::cout << "Operations on " << account1.get_account_holder() << "'s account:" << std::endl;
+    cout << "Operations on " << account1.get_account_holder() << "'s account:" << endl;
     account1.deposit(250.0);
     account1.withdraw(100.0);
     account1.display_balance();
-    std::cout << "-------------------------\n" << std::endl;
+    cout << "-------------------------\n" <<endl;
 
-    std::cout << "Operations on " << account2.get_account_holder() << "'s account:" << std::endl;
+    cout << "Operations on " << account2.get_account_holder() << "'s account:" <<endl;
     account2.withdraw(600.0);
     account2.deposit(300.0);
     account2.withdraw(400.0);
     account2.display_balance();
-    std::cout << "-------------------------\n" << std::endl;
+    cout << "-------------------------\n" <<endl;
 
-    std::cout << "Operations on " << account3.get_account_holder() << "'s account:" << std::endl;
+    cout << "Operations on " << account3.get_account_holder() << "'s account:" <<endl;
     account3.deposit(-50.0);
     account3.deposit(1000.0);
     account3.withdraw(200.0);
     account3.display_balance();
-    std::cout << "-------------------------" << std::endl;
+    cout << "-------------------------" <<endl;
 
     return 0;
 }
