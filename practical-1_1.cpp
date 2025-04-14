@@ -61,9 +61,9 @@ public:
 };
 
 int main() {
-    BankAccount account1("John Doe", "A12345", 1000.0);
-    BankAccount account2("Jane Smith", "B67890", 500.0);
-    BankAccount account3("Alice Johnson", "C13579");
+    BankAccount account1("Ridham Lakkad", "A12345", 1000.0);
+    BankAccount account2("Rishi Hirapara", "B67890", 500.0);
+    BankAccount account3("Kunjal kalariya", "C13579");
 
     cout << "Initial Account States:" <<endl;
     cout << "-------------------------" <<endl;
@@ -93,6 +93,8 @@ int main() {
     account3.withdraw(200.0);
     account3.display_balance();
     cout << "-------------------------" <<endl;
+
+    cout<<"Ridham Lakkad:24CE059"<<endl;
 
     return 0;
 }
