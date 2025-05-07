@@ -1,27 +1,38 @@
 #include <iostream>
-#include <vector>
 
-using namespace std;
-
-class Complex {
+class Complex
+{
 private:
     double real;
     double imag;
 
 public:
-    // Constructor
-    Complex(double r = 0.0, double i = 0.0) : real(r), imag(i) {}
+    
+    Complex(double r = 0.0, double i = 0.0) : real(r), imag(i) 
+    {}
 
-    // Overload + operator
-    Complex operator+(const Complex& other) const {
+    
+    Complex operator+(const Complex& other) const 
+    {
         return Complex(real + other.real, imag + other.imag);
     }
 
-    Complex operator-(const Complex& other) const {
+    Complex operator-(const Complex& other) const 
+    {
         return Complex(real - other.real, imag - other.imag);
     }
 
-    friend ostream& operator<<(ostream& out, const Complex& c) {
+    friend std::istream& operator>>(std::istream& in, Complex& c) 
+    {
+        std::cout << "Enter real part: ";
+        in >> c.real;
+        std::cout << "Enter imaginary part: ";
+        in >> c.imag;
+        return in;
+    }
+
+    friend std::ostream& operator<<(std::ostream& out, const Complex& c) 
+    {
         out << c.real;
         if (c.imag >= 0)
             out << " + " << c.imag << "i";
@@ -29,50 +40,21 @@ public:
             out << " - " << -c.imag << "i";
         return out;
     }
-
-    friend istream& operator>>(istream& in, Complex& c) {
-        cout << "Enter real part: ";
-        in >> c.real;
-        cout << "Enter imaginary part: ";
-        in >> c.imag;
-        return in;
-    }
 };
 
-int main() {
-    Complex c1, c2, sum, diff;
+int main() 
+{
+    Complex c1, c2;
+    std::cout << "Enter first complex number:\n";
+    std::cin >> c1;
+    std::cout << "Enter second complex number:\n";
+    std::cin >> c2;
 
-    cout << "Enter first complex number:" << endl;
-    cin >> c1;
-    cout << "Enter second complex number:" << endl;
-    cin >> c2;
+    Complex sum = c1 + c2;
+    Complex diff = c1 - c2;
 
-    sum = c1 + c2;
-    diff = c1 - c2;
-
-    cout << "\nFirst Complex Number: " << c1 << endl;
-    cout << "Second Complex Number: " << c2 << endl;
-    cout << "Sum: " << sum << endl;
-    cout << "Difference: " << diff << endl;
-
-    vector<Complex> complexList;
-    int n;
-    cout << "\nHow many complex numbers do you want to enter? ";
-    cin >> n;
-
-    for (int i = 0; i < n; ++i) {
-        Complex temp;
-        cout << "Enter complex number " << i + 1 << ":" << endl;
-        cin >> temp;
-        complexList.push_back(temp);
-    }
-
-    Complex totalSum;
-    for (const auto& c : complexList) {
-        totalSum = totalSum + c;
-    }
-
-    cout << "\nTotal Sum of all complex numbers: " << totalSum << endl;
+    std::cout << "Sum: " << sum << std::endl;
+    std::cout << "Difference: " << diff << std::endl;
 
     return 0;
 }
